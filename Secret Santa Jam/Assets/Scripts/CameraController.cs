@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public RubicCubeManager RubicCubeManager;
     public Transform Camera;
     public int RotateSpeed = 40;
     public bool IsUp = true;
@@ -26,6 +27,7 @@ public class CameraController : MonoBehaviour
             }
             else if (Input.GetMouseButtonDown(1))
             {
+                RubicCubeManager.Angled = !RubicCubeManager.Angled;
                 int direction = 1;
 
                 if (Input.GetKey(KeyCode.LeftShift)) direction = -1;

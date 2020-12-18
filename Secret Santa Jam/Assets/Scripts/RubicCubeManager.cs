@@ -11,6 +11,7 @@ public class RubicCubeManager : MonoBehaviour
     public static GameObject SelectedCube;
     public static bool IsTimerCounting = false;
 
+    public bool Angled = false;
     public bool MixCube = false;
     public int MixAmount = 10;
     public float Timer = 0;
@@ -70,15 +71,21 @@ public class RubicCubeManager : MonoBehaviour
             StartCoroutine(MixRubicCube(MixAmount));
         }
     }
-
+    
     public void ResetTimer()
     {
+        IsTimerCounting = false;
         Timer = 0;
+        TimerText.text = "00:00";
     }
 
     public void ToggleMixCube()
     {
-        MixCube = true;
+        if (!Angled)
+        {
+            MixCube = true;
+            ResetTimer();
+        }
     }
 
     public IEnumerator MixRubicCube(int rotationAmount)
@@ -127,7 +134,7 @@ public class RubicCubeManager : MonoBehaviour
 
     private void ControlCube()
     {
-        if (!Rotating)
+        if (!Rotating && !Angled)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
