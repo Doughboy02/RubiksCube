@@ -18,14 +18,14 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!RubicCubeManager.Rotating)
+        if (!RubicCubeManager.Rotating && !RubicCubeManager.Mixing)
         {
-            if (Input.GetMouseButtonDown(1) && Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetMouseButtonDown(1) && Input.GetKey(KeyCode.LeftControl) && !RubicCubeManager.Mixing && !RubicCubeManager.Rotating)
             {
                 RubicCubeManager.Rotating = true;
                 StartCoroutine(RotateUpDown());
             }
-            else if (Input.GetMouseButtonDown(1))
+            else if (Input.GetMouseButtonDown(1) && !RubicCubeManager.Mixing && !RubicCubeManager.Rotating)
             {
                 RubicCubeManager.Angled = !RubicCubeManager.Angled;
                 int direction = 1;
@@ -35,8 +35,7 @@ public class CameraController : MonoBehaviour
                 RubicCubeManager.Rotating = true;
                 StartCoroutine(RotateToSide(direction, 45));
             }
-
-            if (Input.GetKeyDown(KeyCode.Space))
+            else if (Input.GetKeyDown(KeyCode.Space) && !RubicCubeManager.Mixing && !RubicCubeManager.Rotating)
             {
                 RubicCubeManager.Rotating = true;
                 StartCoroutine(RotateToSide(1, 180));

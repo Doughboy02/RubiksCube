@@ -48,11 +48,10 @@ public class Side : MonoBehaviour
             yield return new WaitForSeconds(.01f);
         }
 
-        RubicCubeManager.Rotating = false;
-
         CheckCubesPanel.transform.DetachChildren();
         Manger.CheckColors();
-
+        
         yield return null;
+        RubicCubeManager.Rotating = false;
     }
 }

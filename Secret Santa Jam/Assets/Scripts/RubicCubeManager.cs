@@ -13,6 +13,7 @@ public class RubicCubeManager : MonoBehaviour
 
     public bool Angled = false;
     public bool MixCube = false;
+    public bool Mixing = false;
     public int MixAmount = 10;
     public float Timer = 0;
 
@@ -81,8 +82,9 @@ public class RubicCubeManager : MonoBehaviour
 
     public void ToggleMixCube()
     {
-        if (!Angled)
+        if (!Angled && !Mixing && !Rotating)
         {
+            Mixing = true;
             MixCube = true;
             ResetTimer();
         }
@@ -129,7 +131,9 @@ public class RubicCubeManager : MonoBehaviour
             }
 
             yield return new WaitUntil(() => !Rotating);
-        }       
+        }
+
+        Mixing = false;
     }
 
     private void ControlCube()
@@ -142,41 +146,36 @@ public class RubicCubeManager : MonoBehaviour
                 IsTimerCounting = true;
                 SimpleRotate(Left);
             }
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Rotating = true;
-                IsTimerCounting = true;
-                SimpleRotate(Right);
-            }
-
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Rotating = true;
-                IsTimerCounting = true;
-                SimpleRotate(Back);
-            }
-
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                Rotating = true;
-                IsTimerCounting = true;
-                SimpleRotate(Front);
-            }
-
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                Rotating = true;
-                IsTimerCounting = true;
-                SimpleRotate(Top);
-            }
-
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                Rotating = true;
-                IsTimerCounting = true;
-                SimpleRotate(Bottom);
-            }
+            else if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Rotating = true;
+                    IsTimerCounting = true;
+                    SimpleRotate(Right);
+                }
+            else if (Input.GetKeyDown(KeyCode.A))
+                {
+                    Rotating = true;
+                    IsTimerCounting = true;
+                    SimpleRotate(Back);
+                }
+            else if (Input.GetKeyDown(KeyCode.D))
+                {
+                    Rotating = true;
+                    IsTimerCounting = true;
+                    SimpleRotate(Front);
+                }
+            else if (Input.GetKeyDown(KeyCode.W))
+                {
+                    Rotating = true;
+                    IsTimerCounting = true;
+                    SimpleRotate(Top);
+                }
+            else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    Rotating = true;
+                    IsTimerCounting = true;
+                    SimpleRotate(Bottom);
+                }
         }
     }
 

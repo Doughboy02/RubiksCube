@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     public GameObject OpenOptionsPanel;
     public Text FullScreenText;
     public GameObject FullScreenBtn;
+    public GameObject ExitGameBtn;
 
     public bool HelpIsOpen;
 
@@ -19,7 +20,11 @@ public class MenuManager : MonoBehaviour
         if (Screen.fullScreen) FullScreenText.text = "Windowed";
         else FullScreenText.text = "Full Screen";
 
-        if (Application.platform == RuntimePlatform.WebGLPlayer) FullScreenBtn.SetActive(false);
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            FullScreenBtn.SetActive(false);
+            ExitGameBtn.SetActive(false);
+        }
     }
 
     // Update is called once per frame
